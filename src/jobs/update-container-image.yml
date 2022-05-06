@@ -91,12 +91,12 @@ parameters:
     default: ""
 
 steps:
-  - kubernetes/install:
-      kubectl-version: << parameters.kubectl-version >>
   - update-kubeconfig-with-authenticator:
       cluster-name: << parameters.cluster-name >>
       aws-region: << parameters.aws-region >>
       aws-profile: << parameters.aws-profile >>
+      install-kubectl: true
+      kubectl-version: << parameters.kubectl-version >>
       authenticator-release-tag: << parameters.authenticator-release-tag >>
   - kubernetes/update-container-image:
       resource-name: << parameters.resource-name >>
